@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: spring_security_auth
+  datasource:
+    url: jdbc:mysql://localhost:3306/simpleBlog
+    username: root
+    password: Firengiz77
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: firengizsariyeva77@gmail.com
+    password: kiwlpyjmsiqqlytj
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 83179070835-rt034mpb4cosv4c5pk603nv37mm3b33k.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+                - email
+                - profile
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: Google
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
+
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/sbip.p12
+    key-store-password: p@ssw0rd
+    key-alias: sbip
+  port: 8443
